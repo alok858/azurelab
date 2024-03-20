@@ -1,0 +1,30 @@
+# Ignore directory by name
+.terraform/
+
+# Ignore files with specific extensions
+*.tfstate
+*.tfstate.*
+
+# Ignore specific files
+.terraform.lock.hcl
+
+# # Ignore all files in a directory (but track the directory)
+# some_directory/*
+
+# # Ignore files, but not directories, with a specific name
+# somefile.*
+# !somefile/
+
+# # Exclude specific files or directories
+# !.gitignore
+
+# # Ignore log files and temporary files
+# *.log
+# *.tmp
+
+# # Ignore directory contents without ignoring the directory
+# some_other_directory/**/*
+
+# # Ignore files by pattern
+# *~
+# .DS_Store

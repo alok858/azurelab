@@ -11,7 +11,7 @@ module "vnet_master" {
     tags = merge(
     local.common_tags,
     {
-      "ResourceType" = "ResourceGroup"
+      "ResourceType" = "VirtualNetwork"
       "Subscription" = "AKLAB-Master"
     }
   )
@@ -30,7 +30,7 @@ module "vnet_CoreInfra" {
     tags = merge(
     local.common_tags,
     {
-      "ResourceType" = "ResourceGroup"
+      "ResourceType" = "VirtualNetwork"
       "Subscription" = "AKLAB-CoreInfra"
     }
   )
@@ -49,7 +49,7 @@ module "vnet_MicroServicesInfra" {
     tags = merge(
     local.common_tags,
     {
-      "ResourceType" = "ResourceGroup"
+      "ResourceType" = "VirtualNetwork"
       "Subscription" = "AKLAB-MicroServicesInfra"
     }
   )

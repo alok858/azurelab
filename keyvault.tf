@@ -1,4 +1,8 @@
 #Creating a KeyVault
+provider "azurerm" {
+    features {}
+}
+
 module "key_vault_master" {
   source    = "./modules/keyvault"
   providers = {

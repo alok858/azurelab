@@ -34,3 +34,8 @@ provider "azurerm" {
   alias = "AKLAB-MicroServicesInfra"
   subscription_id = "944b31f7-f993-4d82-a8c0-bdf906970613"
 }
+
+provider "azuread" {
+  version = "2.47.0"
+  tenant_id = "f6841f89-d471-4dfc-9f2a-b35015a4a302"  # Default Directory & Tenant
+}

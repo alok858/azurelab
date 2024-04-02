@@ -3,8 +3,8 @@ module "storage_container_master" {
   providers = {
     azurerm = azurerm.AKLAB-Master
   }
-  storage_account_name      = "stgac${random_string.this.result}"
+  storage_account_name      = module.storage_account_master.storage_account_name
   container_name            = "container-lab-master-ause-01"
   container_access_type     = "private"
-  
+
 }

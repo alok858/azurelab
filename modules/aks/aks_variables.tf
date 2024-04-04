@@ -35,6 +35,23 @@ variable "vnet_subnet_id" {
   type        = string
 }
 
+variable "authorized_ip_ranges" {
+  description = "Set of authorized IP ranges to allow access to API server."
+  type        = list(string)
+  default     = []
+}
+
+variable "vnet_integration_enabled" {
+  description = "Should API Server VNet Integration be enabled?"
+  type        = bool
+  default     = false
+}
+
+variable "api_server_subnet_id" {
+  description = "The ID of the subnet where the AKS API server endpoint will be placed."
+  type        = string
+}
+
 variable "default_node_pool_name" {
   description = "The name of the default node pool."
   type        = string

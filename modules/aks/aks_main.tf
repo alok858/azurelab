@@ -19,8 +19,11 @@ resource "azurerm_kubernetes_cluster" "aks" {
   }
 
   private_cluster_enabled = true
-
-  //api_server_authorized_ip_ranges = [var.your_public_ip_cidr, module.subnet_aks.subnet_cidr]
+  api_server_access_profile {
+    authorized_ip_ranges     = var.authorized_ip_ranges
+    subnet_id                = var.api_server_subnet_id
+    vnet_integration_enabled = var.vnet_integration_enabled
+  }
 
   identity {
     type    = "UserAssigned"

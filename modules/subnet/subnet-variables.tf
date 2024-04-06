@@ -25,3 +25,15 @@ variable "service_endpoints" {
   type        = list(string)
   default     = []
 }
+
+variable "subnet_delegation" {
+  description = "List of subnet delegations"
+  type = list(object({
+    name = string
+    service_delegation = list(object({
+      name    = string
+      actions = list(string)
+    }))
+  }))
+  default = []
+}

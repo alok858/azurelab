@@ -29,7 +29,7 @@ module "aks_cluster" {
   */
   
   vnet_integration_enabled = true 
-  api_server_subnet_id = module.subnet_microservicesinfra-03.subnet_id
+  api_server_subnet_id = module.subnet_microservicesinfra-02.subnet_id
 
   azure_active_directory_role_based_access_control ={
     managed = true

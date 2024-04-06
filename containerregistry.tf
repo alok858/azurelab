@@ -17,7 +17,7 @@ module "azure_container_registry" {
     }
   )
 
-  depends_on = [
-    module.resource_group_coreinfra,
-    module.vnet_CoreInfra]
+  # depends_on = [
+  #   module.resource_group_coreinfra,
+  #   module.vnet_CoreInfra]
 }

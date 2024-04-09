@@ -25,17 +25,6 @@ variable "account_replication_type" {
   default     = "LRS"
 }
 
-# variable "container_name" {
-#   description = "The name of the storage container"
-#   type        = string
-# }
-
-# variable "container_access_type" {
-#   description = "The access level of the storage container"
-#   type        = string
-#   default     = "private"
-# }
-
 variable "tags" {
   description = "A mapping of tags to assign to the resource."
   type        = map(string)

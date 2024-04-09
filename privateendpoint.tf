@@ -64,7 +64,7 @@ module "keyvault_private_endpoint_coreinfra" {
   )
 }
 
-# # Creating a private endpoint in MicroServicesInfra for StorageAccount communication
+# # Creating a private endpoint in CoreInfra for StorageAccount communication
 module "storageaccount_private_endpoint_coreinfra" {
   source                          = "./modules/private_endpoint"
   name                            = "sa-coreinfra-private-endpoint"
@@ -81,6 +81,29 @@ module "storageaccount_private_endpoint_coreinfra" {
     local.common_tags,
     {
       "ResourceType" = "StorageAccount-PrivateEndpoint"
+      "Subscription" = "AKLAB-CoreInfra"
+    }
+  )
+}
+
+# Creating a private endpoint in CoreInfra for Azure Monitor Workspace communication
+module "azuremonitorworkspace_private_endpoint_coreinfra" {
+  source                          = "./modules/private_endpoint"
+  providers = {
+    azurerm = azurerm.AKLAB-CoreInfra
+  }
+  name                            = "azmonitorwkspc-coreinfra-private-endpoint"
+  location                        = "Australia SouthEast"
+  resource_group_name             = module.resource_group_coreinfra.resource_group_name
+  subnet_id                       = module.subnet_coreinfra-01.subnet_id
+  private_service_connection_name = "MonitorWorkspace-CoreInfra-Conexn"
+  private_connection_resource_id  = module.azure_monitor_workspace.monitor_workspace_id
+  subresource_names               = ["prometheusMetrics"]
+  
+  tags                      = merge(
+    local.common_tags,
+    {
+      "ResourceType" = "AzureMonitorWorkspace-PrivateEndpoint"
       "Subscription" = "AKLAB-CoreInfra"
     }
   )

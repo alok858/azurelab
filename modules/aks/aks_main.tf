@@ -31,6 +31,21 @@ resource "azurerm_kubernetes_cluster" "aks" {
     //user_assigned_identity_ids = var.user_assigned_identity_id
   }
 
+  oms_agent {
+     log_analytics_workspace_id = var.log_analytics_workspace_id
+     msi_auth_for_monitoring_enabled = var.msi_auth_for_monitoring_enabled
+  }
+
+  monitor_metrics {
+      annotations_allowed   = "prometheus.io/scrape, prometheus.io/port"
+      labels_allowed        = "app.kubernetes.io/name,app.kubernetes.io/version,app.kubernetes.io/environment"
+  }
+
+  lifecycle {
+    ignore_changes = [
+      default_node_pool[0].upgrade_settings, # Ignore changes to upgrade_settings block
+    ]
+  }
+
   tags = var.tags
 }
-

@@ -17,4 +17,9 @@ resource "azurerm_subnet" "subnet" {
       }
     }
   }
+  lifecycle {
+    ignore_changes = [
+      delegation, // Ignore changes to the delegation block
+    ]
+  }
 }

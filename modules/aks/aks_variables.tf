@@ -89,3 +89,12 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
+
+variable "log_analytics_workspace_id" {
+  description = "The Log Analytics Workspace ID for Azure Monitor integration."
+  type        = string
+}
+
+variable "msi_auth_for_monitoring_enabled" {
+  type = bool
+}

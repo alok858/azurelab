@@ -30,3 +30,21 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
+
+variable "internet_ingestion_enabled" {
+  description = "Controls whether the workspace accepts data ingestion from public networks. Possible values are Enabled and Disabled."
+  type        = string
+  default     = "Disabled"
+}
+
+variable "internet_query_enabled" {
+  description = "Controls whether the workspace accepts query requests from public networks. Possible values are Enabled and Disabled."
+  type        = string
+  default     = "Disabled"
+}
+
+variable "data_source_type" {
+  description = "Defines logging type we want"
+  type        = string
+  default     = "CustomLogs"
+}

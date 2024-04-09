@@ -24,3 +24,24 @@ resource "azurerm_role_assignment" "storage_account_contributor_coreinfra" {
     module.storage_account_coreinfra
    ]
 }
+
+# Assigning Log Analytics Contributor role to managed identity called "mi-lab-msi-ause-01" in the LogAnalytics Workspace in CoreInfra
+resource "azurerm_role_assignment" "loganalytics_contributor_msi" {
+  scope                = module.monitor_log_analytics_workspace.workspace_id
+  role_definition_name = "Log Analytics Contributor"
+  principal_id         = module.managed_identity_microservicesinfra.managed_identity_principal_id
+}
+
+# Assigning Log Analytics Contributor role to managed identity called "mi-lab-msi-ause-01" in the Azure Monitor Workspace in CoreInfra
+resource "azurerm_role_assignment" "loganalytics_contributor_monitorworkspace_msi" {
+  scope                = module.azure_monitor_workspace.monitor_workspace_id
+  role_definition_name = "Log Analytics Contributor"
+  principal_id         = module.managed_identity_microservicesinfra.managed_identity_principal_id
+}
+
+# Assigning Azure Kubernetes Service RBAC Cluster Admin role to managed identity called "mi-lab-msi-ause-01" in the MicroServicesInfra
+resource "azurerm_role_assignment" "aks-rbac-clusteradmin_msi" {
+  scope                = module.aks_cluster.aks_cluster_id
+  role_definition_name = "Azure Kubernetes Service RBAC Cluster Admin"
+  principal_id         = module.managed_identity_microservicesinfra.managed_identity_principal_id
+}

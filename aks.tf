@@ -15,18 +15,20 @@ module "aks_cluster" {
   vnet_subnet_id      = module.subnet_microservicesinfra-01.subnet_id # Ensure your subnet module outputs this
   service_cidr        = "10.0.0.0/23"
   
-  //Before enabling VNET integration, please verify that the subscription where AKS is being deployed has this enabled. 
-  //az feature show --namespace "Microsoft.ContainerService" --name "EnableAPIServerVnetIntegrationPreview"
-  /*output:
-  {
-  "id": "/subscriptions/944b31f7-f993-4d82-a8c0-bdf906970613/providers/Microsoft.Features/providers/Microsoft.ContainerService/features/EnableAPIServerVnetIntegrationPreview",
-  "name": "Microsoft.ContainerService/EnableAPIServerVnetIntegrationPreview",
-  "properties": {
-    "state": "Registered"
-  },
-  "type": "Microsoft.Features/providers/features"
-  }
-  */
+  /*Before enabling VNET integration, please verify that the subscription where AKS is being deployed has this feature enabled*/
+        //az feature show --namespace "Microsoft.ContainerService" --name "EnableAPIServerVnetIntegrationPreview"
+                  /*
+                  output:
+                  {
+                  "id": "/subscriptions/944b31f7-f993-4d82-a8c0-bdf906970613/providers/Microsoft.Features/providers/Microsoft.ContainerService/features/EnableAPIServerVnetIntegrationPreview",
+                  "name": "Microsoft.ContainerService/EnableAPIServerVnetIntegrationPreview",
+                  "properties": {
+                    "state": "Registered"
+                  },
+                  "type": "Microsoft.Features/providers/features"
+                  }
+                  */
+        //
   
   vnet_integration_enabled = true 
   api_server_subnet_id = module.subnet_microservicesinfra-02.subnet_id
@@ -38,6 +40,9 @@ module "aks_cluster" {
 
   user_assigned_identity_ids = [module.managed_identity_microservicesinfra.managed_identity_id]
   
+  log_analytics_workspace_id = module.monitor_log_analytics_workspace.workspace_id
+  msi_auth_for_monitoring_enabled = true
+
   depends_on = [
     module.azure_security_group02,
     module.managed_identity_microservicesinfra

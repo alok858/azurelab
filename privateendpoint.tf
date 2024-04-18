@@ -108,3 +108,49 @@ module "azuremonitorworkspace_private_endpoint_coreinfra" {
     }
   )
 }
+
+# Creating a private endpoint in CoreInfra for Azure Monitor PrivateLink Scope communication
+module "azuremonitorprivatelinkscope_private_endpoint_coreinfra" {
+  source                          = "./modules/private_endpoint"
+  providers = {
+    azurerm = azurerm.AKLAB-CoreInfra
+  }
+  name                            = "ampls-coreinfra-private-endpoint"
+  location                        = "Australia SouthEast"
+  resource_group_name             = module.resource_group_coreinfra.resource_group_name
+  subnet_id                       = module.subnet_coreinfra-01.subnet_id
+  private_service_connection_name = "AMPLS-CoreInfra-Conexn"
+  private_connection_resource_id  = module.ampls.ampls_id
+  subresource_names               = ["azuremonitor"]
+  
+  tags                      = merge(
+    local.common_tags,
+    {
+      "ResourceType" = "AMPLS-PrivateEndpoint"
+      "Subscription" = "AKLAB-CoreInfra"
+    }
+  )
+}
+
+# Creating a private endpoint in CoreInfra for Azure Container Registry communication
+module "azurecontainerregistry_private_endpoint_coreinfra" {
+  source                          = "./modules/private_endpoint"
+  providers = {
+    azurerm = azurerm.AKLAB-CoreInfra
+  }
+  name                            = "acr-coreinfra-private-endpoint"
+  location                        = "Australia SouthEast"
+  resource_group_name             = module.resource_group_coreinfra.resource_group_name
+  subnet_id                       = module.subnet_coreinfra-01.subnet_id
+  private_service_connection_name = "ACR-CoreInfra-Conexn"
+  private_connection_resource_id  = module.azure_container_registry.acr_id
+  subresource_names               = ["registry"]
+  
+  tags                      = merge(
+    local.common_tags,
+    {
+      "ResourceType" = "ACR-PrivateEndpoint"
+      "Subscription" = "AKLAB-CoreInfra"
+    }
+  )
+}

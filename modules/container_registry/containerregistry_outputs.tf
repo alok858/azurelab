@@ -15,3 +15,7 @@ output "acr_admin_password" {
   sensitive   = true
 }
 
+output "acr_id" {
+  value       = azurerm_container_registry.acr.id
+  description = "The resource ID for the container registry."
+}

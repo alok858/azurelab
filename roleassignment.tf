@@ -45,3 +45,10 @@ resource "azurerm_role_assignment" "aks-rbac-clusteradmin_msi" {
   role_definition_name = "Azure Kubernetes Service RBAC Cluster Admin"
   principal_id         = module.managed_identity_microservicesinfra.managed_identity_principal_id
 }
+
+# Assigning Log Analytics Contributor role to managed identity called "mi-lab-msi-ause-01" in the Azure Monitor Workspace in CoreInfra
+resource "azurerm_role_assignment" "containerregistry_acrpull_coreinfra" {
+  scope                = module.azure_container_registry.acr_id
+  role_definition_name = "AcrPull"
+  principal_id         = module.managed_identity_microservicesinfra.managed_identity_principal_id
+}

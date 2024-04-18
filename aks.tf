@@ -32,6 +32,7 @@ module "aks_cluster" {
   
   vnet_integration_enabled = true 
   api_server_subnet_id = module.subnet_microservicesinfra-02.subnet_id
+  authorized_ip_ranges = [] // Required when the cluster is marked public, e.g., ["202.56.61.2"]
 
   azure_active_directory_role_based_access_control ={
     managed = true

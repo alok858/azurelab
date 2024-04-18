@@ -3,12 +3,14 @@ module "azure_container_registry" {
   providers = {
     azurerm = azurerm.AKLAB-CoreInfra
   }
-  acr_name              = "ACRlabCoreInfraAUSE01" //5 to 50 alphanumeric only, must be unique
+  acr_name              = "ACRlabCoreInfraAUSE01"
   resource_group_name   = module.resource_group_coreinfra.resource_group_name
   location              = "Australia SouthEast"
   sku                   = "Premium"
   admin_enabled         = true
-  georeplication_locations = ["East US", "West Europe"]
+  public_network_access_enabled = true
+  data_endpoint_enabled = true
+  ip_rule               = { ip_range = "202.56.61.2/32" }
   tags = merge(
     local.common_tags,
     {
@@ -16,8 +18,5 @@ module "azure_container_registry" {
       "Subscription" = "AKLAB-CoreInfra"
     }
   )
-
-  # depends_on = [
-  #   module.resource_group_coreinfra,
-  #   module.vnet_CoreInfra]
 }
+

@@ -35,3 +35,21 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
+
+variable "public_network_access_enabled" {
+  description = "Indicates whether or not public network access is allowed for the container registry. Possible values are true or false."
+  type        = bool
+  default     = true
+}
+
+variable "ip_rule" {
+  description = "Specifies an IP rule that allows access from a specific IP or range."
+  type        = map(string)
+  default     = {}
+}
+
+variable "data_endpoint_enabled" {
+  description = "Indicates whether the dedicated data endpoint is enabled for the container registry."
+  type        = bool
+  default     = false
+}

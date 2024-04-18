@@ -1,10 +1,4 @@
 /*                This module creates Virtual Machine               */
-
-/* Pre-Requisites: 
-
-*/
-
-
 module "vm" {
   source = "./modules/vm"
   providers = {

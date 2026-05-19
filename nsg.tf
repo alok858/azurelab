@@ -15,7 +15,7 @@ module "vm_nsg" {
       protocol                   = "Tcp"
       source_port_range          = "*"
       destination_port_range     = "22"
-      source_address_prefix      = "202.56.61.2/32"
+      source_address_prefix      = var.vm_nsg_ssh_source_address_prefix
       destination_address_prefix = "*"
     },
     {

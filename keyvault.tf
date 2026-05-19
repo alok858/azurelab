@@ -11,8 +11,9 @@ module "key_vault_master" {
   key_vault_name      = "kv-lab-master-ause-01"
   location            = "Australia SouthEast"
   resource_group_name = module.resource_group_master.resource_group_name
-  tenant_id           = "f6841f89-d471-4dfc-9f2a-b35015a4a302"
+  tenant_id           = var.azuread_tenant_id
   subnet_id           = module.subnet_master.subnet_id
+  allowed_ip_rules    = var.key_vault_allowed_ip_rules
   object_id           = module.managed_identity_master.managed_identity_principal_id
   
   tags                = merge(
@@ -38,8 +39,9 @@ module "key_vault_coreinfra" {
   key_vault_name      = "kv-lab-coreinfra-ause-01"
   location            = "Australia SouthEast"
   resource_group_name = module.resource_group_coreinfra.resource_group_name
-  tenant_id           = "f6841f89-d471-4dfc-9f2a-b35015a4a302"
+  tenant_id           = var.azuread_tenant_id
   subnet_id           = module.subnet_coreinfra-01.subnet_id
+  allowed_ip_rules    = var.key_vault_allowed_ip_rules
   object_id           = module.managed_identity_microservicesinfra.managed_identity_principal_id
   
   tags                = merge(

@@ -9,10 +9,15 @@ resource "azurerm_container_registry" "acr" {
 
   network_rule_set {
     default_action = "Deny"
-    ip_rule = [{
-      action   = "Allow"
-      ip_range = var.ip_rule["ip_range"]
-    }]
+
+    dynamic "ip_rule" {
+      for_each = lookup(var.ip_rule, "ip_range", null) == null ? [] : [var.ip_rule["ip_range"]]
+
+      content {
+        action   = "Allow"
+        ip_range = ip_rule.value
+      }
+    }
   }
 
   tags = var.tags

@@ -6,4 +6,5 @@ output "workspace_id" {
 output "primary_shared_key" {
   value       = azurerm_log_analytics_workspace.coreinfra.primary_shared_key
   description = "The Primary Shared Key for the Log Analytics Workspace."
+  sensitive   = true
 }

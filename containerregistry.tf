@@ -7,10 +7,10 @@ module "azure_container_registry" {
   resource_group_name   = module.resource_group_coreinfra.resource_group_name
   location              = "Australia SouthEast"
   sku                   = "Premium"
-  admin_enabled         = true
+  admin_enabled         = false
   public_network_access_enabled = true
   data_endpoint_enabled = true
-  ip_rule               = { ip_range = "202.56.61.2/32" }
+  ip_rule               = var.acr_allowed_ip_rule
   tags = merge(
     local.common_tags,
     {
@@ -19,4 +19,3 @@ module "azure_container_registry" {
     }
   )
 }
-

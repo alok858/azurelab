@@ -16,7 +16,7 @@ module "storage_account_master" {
   account_tier              = "Standard"
   account_replication_type  = "LRS"
   subnet_id                 = module.subnet_master.subnet_id
-  allowed_ip_addresses      = ["14.137.17.39/24", "202.56.61.2", "159.196.12.63"]
+  allowed_ip_addresses      = var.storage_account_master_allowed_ip_addresses
   tags                      = merge(
     local.common_tags,
     {
@@ -41,7 +41,7 @@ module "storage_account_coreinfra" {
   account_tier              = "Standard"
   account_replication_type  = "LRS"
   subnet_id                 = module.subnet_microservicesinfra-01.subnet_id
-  allowed_ip_addresses      = ["202.56.61.2", "159.196.12.63"]
+  allowed_ip_addresses      = var.storage_account_coreinfra_allowed_ip_addresses
   tags                      = merge(
     local.common_tags,
     {

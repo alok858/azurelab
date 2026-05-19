@@ -4,6 +4,17 @@
 # Ignore files with specific extensions
 *.tfstate
 *.tfstate.*
+*.tfvars
+*.tfvars.json
+*.pfx
+*.p12
+*.pem
+*.key
+*.crt
+*.cer
+*.env
+.env
+credentials
 
 # Ignore specific files
 .terraform.lock.hcl

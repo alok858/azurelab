@@ -6,8 +6,8 @@ resource "azurerm_key_vault_certificate" "my_ca_cert_master" {
   # location            = "Australia SouthEast"
   # resource_group_name = module.resource_group_master.resource_group_name
   certificate {
-    contents = filepath("~/personalrepos/azurelab/letsencrypt/MyCA.pfx")
-    password = "xxxx"
+    contents = filebase64(var.ca_certificate_pfx_path)
+    password = var.ca_certificate_pfx_password
   }
   
 }
